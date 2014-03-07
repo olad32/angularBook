@@ -1,0 +1,36 @@
+<div id="cart">
+    <h2>Panier</h2>
+    <table width="90%">
+        <tr class="ligne">
+            <th>Titre</th>
+            <th>Prix</th>
+            <th>Quantité</th>
+            <th>HT</th>
+            <th>TTC</th>
+            <th></th>
+        </tr>
+        <tr ng-repeat="row in cart.rows" ng-class="{big: cart.alertHT(row)}" class="ligne">
+            <td style="vertical-align: central;">
+                <a href="#/Book/{{row.item._id.$oid}}">
+                    <img ng-src="{{row.item.img}}"></img>
+                </a>
+                <span ng-bind="row.item.title"></span>
+            </td>
+            <td ng-bind="row.item.price | currency" style="text-align: right;"></td>
+            <td style="text-align: right;">
+                <input ng-model="row.quantity" size="3">
+            </td>
+            <td ng-bind="cart.computeHT(row) | number:2 | currency" style="text-align: right;"></td>
+            <td ng-bind="cart.computeTTC(row) | number:2 | currency" style="text-align: right;"></td>
+            <td>
+                <button ng-click="cart.remove(row)">Supprimer</button>
+            </td>
+        </tr>
+        <tr class="total">
+            <td colspan="3">Total</td>
+            <td ng-bind="cart.computeHTSum() | number:2 | currency" style="text-align: right;"></td>
+            <td ng-bind="cart.computeTTCSum() | number:2 | currency" style="text-align: right;"></td>
+            <td></td>
+        </tr>
+    </table>
+</div>

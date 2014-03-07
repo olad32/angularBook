@@ -1,0 +1,29 @@
+<div id="catalog">
+    <h2>Catalogue</h2>
+    <label>Titre</label><input ng-model="searchCriteria.title">
+    <label>Min</label><input ng-model="searchCriteria.priceMin">
+    <label>Max</label><input ng-model="searchCriteria.priceMax">
+    <br/>
+    <select ng-model="searchCriteria.sort" ng-options="s.label for s in searchCriteria.sortOptions">
+        <option value="">-- Tri --</option>
+    </select>
+    <br/>
+    Nb résultats : <span ng-bind="filteredBooks.length"></span>
+    <table>
+        <tr ng-repeat="book in filteredBooks = (books | filter:searchCriteria.title | interval:'price':searchCriteria.priceMin:searchCriteria.priceMax | orderBy:searchCriteria.sort.sortProperty:searchCriteria.sort.sortOrder)" 
+            ng-class-even="'oddLine'">
+            <td style="text-align: center">
+                <a href="#/Book/{{book._id.$oid}}">
+                    <img ng-src="{{book.img}}"></img>
+                </a>
+                <p ng-bind="book.title"></p>
+                <p ng-bind="book.price | currency"></p>
+            </td>
+            <!--ng-bind-html : permet d'interpréter le html contenu dans book.desc-->
+            <td ng-bind-html="book.desc" style="text-align: justify"></td>
+            <td>
+                <button ng-click="addToCart(book)">Ajouter au panier</button>
+            </td>
+        </tr>
+    </table>
+</div>

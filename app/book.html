@@ -1,0 +1,8 @@
+<div id="book">
+    <h1 ng-bind="book.title"></h1>
+    <h3 ng-bind="book.author"></h3>
+    <img ng-src="{{book.img}}"></img>
+    <button ng-click="addToCart(book)">Ajouter au panier</button>
+    <span ng-bind-html="book.price | currency"></span>
+    <span ng-bind-html="book.desc"></span>
+</div>

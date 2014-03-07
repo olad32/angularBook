@@ -1,0 +1,20 @@
+tr.big td {
+    font-weight: bold;
+}
+
+/*tr.oddLine {
+    background-color: lightsteelblue;
+}*/
+
+table{
+    border-collapse: collapse;
+}
+
+tr {
+    border-bottom: 1px solid lightgray;
+}
+
+tr.total {
+    border: none;
+    font-weight: bold;
+}
